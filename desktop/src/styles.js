@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import 'perfect-scrollbar-react/dist/style.min.css';
 
 export const Container = styled.div`
     height: 100%;
