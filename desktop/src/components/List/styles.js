@@ -12,6 +12,17 @@ export const Container = styled.div`
         border-spacing: 0;
         border-collapse: collapse;
         width: 100%;
+        tr {
+            :hover {
+                color: rgba(30, 215, 96);
+                background: rgba(40, 40, 40);
+                td {
+                    button {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
 
         thead {
             color: #ccc;
@@ -44,4 +55,15 @@ export const Container = styled.div`
 export const Td = styled.td`
     border-bottom: 1px solid rgba(204, 204, 204, 0.2);
     padding: 10px;
+`;
+
+export const Play = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    padding-left: 5px;
+    visibility: hidden;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
 `;

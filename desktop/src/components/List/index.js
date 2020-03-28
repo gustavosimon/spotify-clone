@@ -1,6 +1,7 @@
 import React from 'react';
+import { FiHeart, FiPlay } from 'react-icons/fi';
 
-import { Container, Td } from './styles';
+import { Container, Td, Play } from './styles';
 
 const data = [
     {
@@ -234,7 +235,9 @@ export default function List() {
         <Container>
             <table>
                 <thead>
-                    <Td style={{ width: '40%' }}>TITLE</Td>
+                    <Td style={{ width: '3%' }}></Td>
+                    <Td style={{ width: '3%' }}></Td>
+                    <Td style={{ width: '34%' }}>TITLE</Td>
                     <Td style={{ width: '15%' }}>ARTIST</Td>
                     <Td style={{ width: '15%' }}>ALBUM</Td>
                     <Td style={{ width: '15%' }}>DATA</Td>
@@ -242,7 +245,17 @@ export default function List() {
                 </thead>
                 {data.map(d => (
                     <tr>
-                        <Td style={{ width: '40%' }}>{d.title}</Td>
+                        <Td style={{ width: '3%' }}>
+                            <Play>
+                                <FiPlay size={15} color="#fff" />
+                            </Play>
+                        </Td>
+                        <Td style={{ width: '3%' }}>
+                            <button>
+                                <FiHeart size={15} color="#fff" />
+                            </button>
+                        </Td>
+                        <Td style={{ width: '34%' }}>{d.title}</Td>
                         <Td style={{ width: '15%' }}>{d.artist}</Td>
                         <Td style={{ width: '15%' }}>{d.album}</Td>
                         <Td style={{ width: '15%' }}>{d.date}</Td>
