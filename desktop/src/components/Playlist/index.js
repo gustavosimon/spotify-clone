@@ -24,16 +24,16 @@ export default function Playlist() {
         <Container>
             <Span>Sua biblioteca</Span>
             <Ul>
-                {library.map(d => (
-                    <Li selected={selected === d}>
+                {library.map((d, i) => (
+                    <Li key={i} selected={selected === d}>
                         <button onClick={() => setSelected(d)}>{d}</button>
                     </Li>
                 ))}
             </Ul>
             <Span>Playlists</Span>
             <Ul>
-                {data.map(d => (
-                    <Li selected={selected === d}>
+                {data.map((d, i) => (
+                    <Li key={i} selected={selected === d}>
                         <button onClick={() => setSelected(d)}>{d}</button>
                     </Li>
                 ))}

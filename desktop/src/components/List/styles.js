@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
     background: rgba(24, 24, 24);
@@ -12,17 +12,6 @@ export const Container = styled.div`
         border-spacing: 0;
         border-collapse: collapse;
         width: 100%;
-        tr {
-            :hover {
-                color: rgba(30, 215, 96);
-                background: rgba(40, 40, 40);
-                td {
-                    button {
-                        visibility: visible;
-                    }
-                }
-            }
-        }
 
         thead {
             color: #ccc;
@@ -49,6 +38,32 @@ export const Container = styled.div`
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
         display: visible;
+    }
+`;
+
+export const Tr = styled.tr`
+    ${props =>
+        props.active &&
+        css`
+            font-weight: bold;
+            color: rgba(30, 215, 96);
+            background: rgba(40, 40, 40);
+
+            td {
+                button {
+                    visibility: visible;
+                }
+            }
+        `}
+
+    :hover {
+        color: rgba(30, 215, 96);
+        background: rgba(40, 40, 40);
+        td {
+            button {
+                visibility: visible;
+            }
+        }
     }
 `;
 

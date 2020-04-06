@@ -1,7 +1,9 @@
 import React from 'react';
-import { FiHeart, FiPlay } from 'react-icons/fi';
+import { FiHeart, FiPlay, FiPause } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, Td, Play } from './styles';
+import { Container, Tr, Td, Play } from './styles';
+import { playMusic, pauseMusic } from '../../store/modules/play/actions';
 
 const data = [
     {
@@ -231,37 +233,55 @@ const data = [
 ];
 
 export default function List() {
+    const dispatch = useDispatch();
+    const play = useSelector(state => state.play.play);
+    const music = useSelector(state => state.play.music);
+
     return (
         <Container>
             <table>
                 <thead>
-                    <Td style={{ width: '3%' }}></Td>
-                    <Td style={{ width: '3%' }}></Td>
-                    <Td style={{ width: '34%' }}>TITLE</Td>
-                    <Td style={{ width: '15%' }}>ARTIST</Td>
-                    <Td style={{ width: '15%' }}>ALBUM</Td>
-                    <Td style={{ width: '15%' }}>DATA</Td>
-                    <Td style={{ width: '15%' }}>TEMPO</Td>
-                </thead>
-                {data.map(d => (
-                    <tr>
-                        <Td style={{ width: '3%' }}>
-                            <Play>
-                                <FiPlay size={15} color="#fff" />
-                            </Play>
-                        </Td>
-                        <Td style={{ width: '3%' }}>
-                            <button>
-                                <FiHeart size={15} color="#fff" />
-                            </button>
-                        </Td>
-                        <Td style={{ width: '34%' }}>{d.title}</Td>
-                        <Td style={{ width: '15%' }}>{d.artist}</Td>
-                        <Td style={{ width: '15%' }}>{d.album}</Td>
-                        <Td style={{ width: '15%' }}>{d.date}</Td>
-                        <Td style={{ width: '15%' }}>{d.time}</Td>
+                    <tr key={0}>
+                        <Td style={{ width: '3%' }}></Td>
+                        <Td style={{ width: '3%' }}></Td>
+                        <Td style={{ width: '34%' }}>TITLE</Td>
+                        <Td style={{ width: '15%' }}>ARTIST</Td>
+                        <Td style={{ width: '15%' }}>ALBUM</Td>
+                        <Td style={{ width: '15%' }}>DATA</Td>
+                        <Td style={{ width: '15%' }}>TEMPO</Td>
                     </tr>
-                ))}
+                </thead>
+                <tbody>
+                    {data.map((d, i) => (
+                        <Tr key={i} active={music.title === d.title}>
+                            <Td style={{ width: '3%' }}>
+                                {play && music.title === d.title ? (
+                                    <Play
+                                        onClick={() => dispatch(pauseMusic())}
+                                    >
+                                        <FiPause size={15} color="#fff" />
+                                    </Play>
+                                ) : (
+                                    <Play
+                                        onClick={() => dispatch(playMusic(d))}
+                                    >
+                                        <FiPlay size={15} color="#fff" />
+                                    </Play>
+                                )}
+                            </Td>
+                            <Td style={{ width: '3%' }}>
+                                <button>
+                                    <FiHeart size={15} color="#fff" />
+                                </button>
+                            </Td>
+                            <Td style={{ width: '34%' }}>{d.title}</Td>
+                            <Td style={{ width: '15%' }}>{d.artist}</Td>
+                            <Td style={{ width: '15%' }}>{d.album}</Td>
+                            <Td style={{ width: '15%' }}>{d.date}</Td>
+                            <Td style={{ width: '15%' }}>{d.time}</Td>
+                        </Tr>
+                    ))}
+                </tbody>
             </table>
         </Container>
     );

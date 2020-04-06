@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 
 import Footer from './components/Footer';
 import List from './components/List';
 import Playlist from './components/Playlist';
 
+import { Provider } from 'react-redux';
+
 import { Container, Section } from './styles';
+import store from './store/index';
 
 function App() {
-    // useEffect(() => {
-    //     async function dale() {
-    //     dale();
-    // }, []);
     return (
-        <Container>
-            <Section>
-                <Playlist />
-                <List />
-            </Section>
-            <Footer />
-        </Container>
+        <Provider store={store}>
+            <Container>
+                <Section>
+                    <Playlist />
+                    <List />
+                </Section>
+                <Footer />
+            </Container>
+        </Provider>
     );
 }
 
