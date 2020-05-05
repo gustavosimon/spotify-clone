@@ -5,23 +5,22 @@ import Footer from './components/Footer';
 import List from './components/List';
 import Playlist from './components/Playlist';
 
-import { Provider } from 'react-redux';
-
 import { Container, Section } from './styles';
-import store from './store/index';
+
+import AppProvider from './hooks';
 
 function App() {
-    return (
-        <Provider store={store}>
-            <Container>
-                <Section>
-                    <Playlist />
-                    <List />
-                </Section>
-                <Footer />
-            </Container>
-        </Provider>
-    );
+  return (
+    <AppProvider>
+      <Container>
+        <Section>
+          <Playlist />
+          <List />
+        </Section>
+        <Footer />
+      </Container>
+    </AppProvider>
+  );
 }
 
 export default App;
