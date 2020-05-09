@@ -13,6 +13,14 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  span {
+    color: #b3b3b3;
+    padding: 10px;
+    font-size: 11px;
+  }
+  svg {
+    margin-left: 15px;
+  }
 `;
 
 export const Music = styled.div`
@@ -31,8 +39,30 @@ export const Music = styled.div`
     color: #ccc;
   }
   img {
-    width: 50px;
-    height: 50px;
+    width: 40;
+    height: 40px;
     margin-right: 8px;
   }
+`;
+
+export const Volume = styled.div`
+  padding: 30px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  button {
+    opacity: 0.6;
+    :hover {
+      opacity: 1;
+    }
+  }
+  svg {
+    margin-left: 15px;
+  }
+`;
+
+export const Play = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

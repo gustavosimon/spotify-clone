@@ -246,8 +246,8 @@ export default function List() {
       <table>
         <thead>
           <tr key={0}>
-            <Td style={{ width: '3%' }}></Td>
-            <Td style={{ width: '3%' }}></Td>
+            <Td style={{ width: '3%' }} />
+            <Td style={{ width: '3%' }} />
             <Td style={{ width: '34%' }}>TITLE</Td>
             <Td style={{ width: '15%' }}>ARTIST</Td>
             <Td style={{ width: '15%' }}>ALBUM</Td>
