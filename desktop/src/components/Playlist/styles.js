@@ -41,3 +41,61 @@ export const Li = styled.li`
     font-size: 12px;
   }
 `;
+
+export const Home = styled.div`
+  padding: 10px;
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-left: 5px;
+`;
+
+export const HomeButton = styled.div`
+  display: flex;
+  opacity: 0.5;
+  span {
+    margin-top: 9px;
+    color: #fff;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 15px;
+  }
+  :hover {
+    opacity: 1;
+  }
+`;
+
+export const RadioButton = styled.div`
+  display: flex;
+  opacity: 0.5;
+  span {
+    margin-top: 9px;
+    color: #fff;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 15px;
+  }
+  :hover {
+    opacity: 1;
+  }
+`;
+
+export const NavigateButton = styled.div`
+  display: flex;
+  opacity: 0.5;
+  span {
+    margin-top: 9px;
+    color: #fff;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 15px;
+  }
+  :hover {
+    opacity: 1;
+  }
+`;

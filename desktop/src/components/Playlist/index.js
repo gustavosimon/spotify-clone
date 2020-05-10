@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 
-import { Container, Ul, Span, Li } from './styles';
+import { MdHome, MdRadio, MdNavigation } from 'react-icons/md';
+import {
+  Container,
+  Ul,
+  Span,
+  Li,
+  Home,
+  HomeButton,
+  RadioButton,
+  NavigateButton,
+} from './styles';
 
 const data = [
   'Funk Hits',
@@ -23,6 +33,26 @@ export default function Playlist() {
 
   return (
     <Container>
+      <Home>
+        <HomeButton>
+          <button type="button" title="Início">
+            <MdHome size={30} color="#fff" />
+          </button>
+          <span>Início</span>
+        </HomeButton>
+        <NavigateButton>
+          <button type="button" title="Início">
+            <MdNavigation size={30} color="#fff" />
+          </button>
+          <span>Navegar</span>
+        </NavigateButton>
+        <RadioButton>
+          <button type="button" title="Rádio">
+            <MdRadio size={30} color="#fff" />
+          </button>
+          <span>Rádio</span>
+        </RadioButton>
+      </Home>
       <Span>Sua biblioteca</Span>
       <Ul>
         {library.map((d, i) => (
