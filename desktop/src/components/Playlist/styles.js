@@ -1,10 +1,13 @@
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
   width: 200px;
   height: 100%;
   background: rgba(18, 18, 18);
   color: #fff;
+  justify-content: space-between;
+  flex-direction: column;
 `;
 
 export const Ul = styled.ul`
@@ -26,7 +29,6 @@ export const Li = styled.li`
   color: #fff;
   margin-bottom: 10px;
   line-height: 20px;
-
   ${props =>
     props.selected &&
     css`
@@ -34,7 +36,6 @@ export const Li = styled.li`
       padding-left: 8px;
       opacity: 1;
     `}
-
   button {
     color: #fff;
     font-weight: bold;
@@ -97,5 +98,27 @@ export const NavigateButton = styled.div`
   }
   :hover {
     opacity: 1;
+  }
+`;
+
+export const NewPlaylist = styled.div`
+  display: flex;
+  flex-direction: column;
+  hr {
+    opacity: 0.5;
+  }
+  button {
+    opacity: 0.5;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    :hover {
+      opacity: 1;
+    }
+    span {
+      margin-left: 10px;
+      color: #fff;
+    }
   }
 `;

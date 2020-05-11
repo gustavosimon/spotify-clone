@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   MdPlayCircleOutline,
   MdPauseCircleOutline,
@@ -27,9 +27,42 @@ export default function Footer() {
 
   const [progress, setProgress] = useState({});
 
+  const [seeking, setSeeking] = useState(false);
+
+  const playerRef = useRef(null);
+
+  const [volume, setVolume] = useState(0.5);
+
   function handlePlayMusic(music) {
     setPlay(true);
     setMusic(music);
+  }
+
+  function editTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time - minutes * 60);
+    return time ? `${minutes}:${seconds < 10 ? '0' : ''}${seconds}` : '0:00';
+  }
+
+  function handleSeekMouseDown() {
+    setSeeking(true);
+  }
+
+  function handleSeekChange({ x }) {
+    setProgress({
+      ...progress,
+      played: x,
+    });
+  }
+
+  function handleSeekMouseUp(e) {
+    console.log(e.target.value);
+    // setSeeking(false);
+    // playerRef.current.seekTo(parseFloat(e.target.value));
+  }
+
+  function handleProgress(state) {
+    if (!seeking) setProgress(state);
   }
 
   return (
@@ -69,7 +102,7 @@ export default function Footer() {
           </button>
         </Play>
         <div>
-          <span>4:00</span>
+          <span>{editTime(progress.playedSeconds)}</span>
           <ReactInputSlider
             styles={{
               active: {
@@ -87,22 +120,30 @@ export default function Footer() {
               thumb: {
                 width: 10,
                 height: 10,
-                opacity: 0,
+                // opacity: 0,
               },
               disabled: {
                 opacity: 0.5,
               },
             }}
-            xmax={progress.loadedSeconds}
-            x={progress.playedSeconds}
+            xmax={0.999999}
+            xmin={0}
+            x={progress.played}
+            xstep={0.01}
+            onDragStart={handleSeekMouseDown}
+            onChange={handleSeekChange}
+            onDragEnd={handleSeekMouseUp}
           />
-          <span>4:00</span>
+          <span>{editTime(progress.loadedSeconds / progress.loaded)}</span>
         </div>
-        {/* <ReactPlayer
+        <ReactPlayer
           url="http://localhost:3333/public/Vem_Me_Satisfazer.mp3"
           playing={play}
-          onProgress={setProgress}
-        /> */}
+          onProgress={handleProgress}
+          style={{ display: 'none' }}
+          volume={volume}
+          ref={playerRef}
+        />
       </Wrapper>
       <Volume>
         <button type="button">
@@ -122,6 +163,9 @@ export default function Footer() {
               '&:hover': {
                 backgroundColor: 'rgba(30, 215, 96)',
               },
+              '&:active': {
+                backgroundColor: 'rgba(30, 215, 96)',
+              },
             },
             track: {
               backgroundColor: '#404040',
@@ -131,14 +175,17 @@ export default function Footer() {
             thumb: {
               width: 10,
               height: 10,
-              opacity: 0,
+              // opacity: 0,
             },
             disabled: {
               opacity: 0.5,
             },
           }}
-          xmax={progress.loadedSeconds}
-          x={progress.playedSeconds}
+          xmax={1}
+          xmin={0}
+          x={volume}
+          onChange={({ x }) => setVolume(x)}
+          xstep={0.01}
         />
         <button type="button">
           <MdFullscreen size={20} color="#fff" />
