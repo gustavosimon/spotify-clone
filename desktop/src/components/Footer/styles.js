@@ -13,31 +13,36 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   span {
     color: #b3b3b3;
     padding: 10px;
     font-size: 11px;
   }
+
   svg {
     margin-left: 15px;
   }
 `;
 
 export const Music = styled.div`
-  span {
-    display: block;
-    margin-bottom: 5px;
-  }
   padding: 20px;
   color: #fff;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  span {
+    display: block;
+    margin-bottom: 5px;
+  }
+
   span + span {
     font-size: 10px;
     color: #ccc;
   }
+
   img {
     width: 40;
     height: 40px;
@@ -50,12 +55,15 @@ export const Volume = styled.div`
   color: #fff;
   display: flex;
   align-items: center;
+
   button {
     opacity: 0.6;
+
     :hover {
       opacity: 1;
     }
   }
+
   svg {
     margin-left: 15px;
   }

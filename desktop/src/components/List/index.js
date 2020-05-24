@@ -1,5 +1,6 @@
 import React from 'react';
-import { FiHeart, FiPlay, FiPause } from 'react-icons/fi';
+import { FiHeart } from 'react-icons/fi';
+import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/md';
 
 import { Container, Tr, Td, Play } from './styles';
 
@@ -254,20 +255,22 @@ export default function List() {
             <Td style={{ width: '15%' }}>TEMPO</Td>
           </tr>
         </thead>
+
         <tbody>
           {data.map((d, i) => (
             <Tr key={i} active={music.title === d.title}>
               <Td style={{ width: '3%' }}>
                 {play && music.title === d.title ? (
                   <Play onClick={() => setPlay(false)}>
-                    <FiPause size={15} color="#fff" />
+                    <MdPauseCircleOutline size={30} color="#fff" />
                   </Play>
                 ) : (
                   <Play onClick={() => handlePlayMusic(d)}>
-                    <FiPlay size={15} color="#fff" />
+                    <MdPlayCircleOutline size={30} color="#fff" />
                   </Play>
                 )}
               </Td>
+
               <Td style={{ width: '3%' }}>
                 <button>
                   <FiHeart size={15} color="#fff" />

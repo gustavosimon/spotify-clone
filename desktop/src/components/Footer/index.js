@@ -56,7 +56,7 @@ export default function Footer() {
   }
 
   function handleSeekMouseUp(e) {
-    console.log(e.target.value);
+    console.log(e.target);
     // setSeeking(false);
     // playerRef.current.seekTo(parseFloat(e.target.value));
   }
@@ -77,6 +77,7 @@ export default function Footer() {
           </button>
         </div>
       </Music>
+
       <Wrapper>
         <Play>
           <button type="button">
@@ -95,12 +96,13 @@ export default function Footer() {
             </button>
           )}
           <button type="button">
-            <MdSkipNext size={26} color="#fff" />
+            <MdSkipNext size={22} color="#fff" />
           </button>
           <button type="button">
             <MdRepeat size={12} color="#fff" />
           </button>
         </Play>
+
         <div>
           <span>{editTime(progress.playedSeconds)}</span>
           <ReactInputSlider
@@ -120,7 +122,6 @@ export default function Footer() {
               thumb: {
                 width: 10,
                 height: 10,
-                // opacity: 0,
               },
               disabled: {
                 opacity: 0.5,
@@ -132,12 +133,14 @@ export default function Footer() {
             xstep={0.01}
             onDragStart={handleSeekMouseDown}
             onChange={handleSeekChange}
+            on
             onDragEnd={handleSeekMouseUp}
           />
           <span>{editTime(progress.loadedSeconds / progress.loaded)}</span>
         </div>
+
         <ReactPlayer
-          url="http://localhost:3333/public/Vem_Me_Satisfazer.mp3"
+          url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
           playing={play}
           onProgress={handleProgress}
           style={{ display: 'none' }}
@@ -145,6 +148,7 @@ export default function Footer() {
           ref={playerRef}
         />
       </Wrapper>
+
       <Volume>
         <button type="button">
           <MdList size={20} color="#fff" />

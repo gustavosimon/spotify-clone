@@ -4,13 +4,9 @@ import { MdHome, MdRadio, MdNavigation } from 'react-icons/md';
 import { FiPlusCircle } from 'react-icons/fi';
 import {
   Container,
-  Ul,
-  Span,
-  Li,
-  Home,
+  ListItem,
+  Section,
   HomeButton,
-  RadioButton,
-  NavigateButton,
   NewPlaylist,
 } from './styles';
 
@@ -36,49 +32,55 @@ export default function Playlist() {
   return (
     <Container>
       <div>
-        <Home>
+        <Section>
           <HomeButton>
-            <button type="button" title="Início">
-              <MdHome size={30} color="#fff" />
+            <button type="button">
+              <MdHome size={24} color="#fff" />
             </button>
             <span>Início</span>
           </HomeButton>
-          <NavigateButton>
-            <button type="button" title="Início">
-              <MdNavigation size={30} color="#fff" />
+
+          <HomeButton>
+            <button type="button">
+              <MdNavigation size={24} color="#fff" />
             </button>
             <span>Navegar</span>
-          </NavigateButton>
-          <RadioButton>
-            <button type="button" title="Rádio">
-              <MdRadio size={30} color="#fff" />
+          </HomeButton>
+
+          <HomeButton>
+            <button type="button">
+              <MdRadio size={24} color="#fff" />
             </button>
             <span>Rádio</span>
-          </RadioButton>
-        </Home>
-        <Span>Sua biblioteca</Span>
-        <Ul>
-          {library.map((d, i) => (
-            <Li key={i} selected={selected === d}>
-              <button onClick={() => setSelected(d)}>{d}</button>
-            </Li>
-          ))}
-        </Ul>
-        <Span>Playlists</Span>
-        <Ul>
-          {data.map((d, i) => (
-            <Li key={i} selected={selected === d}>
-              <button onClick={() => setSelected(d)}>{d}</button>
-            </Li>
-          ))}
-        </Ul>
+          </HomeButton>
+        </Section>
+
+        <Section>
+          <span>Sua biblioteca</span>
+          <ul>
+            {library.map((d, i) => (
+              <ListItem key={i} selected={selected === d}>
+                <button onClick={() => setSelected(d)}>{d}</button>
+              </ListItem>
+            ))}
+          </ul>
+        </Section>
+
+        <Section>
+          <span>Playlists</span>
+          <ul>
+            {data.map((d, i) => (
+              <ListItem key={i} selected={selected === d}>
+                <button onClick={() => setSelected(d)}>{d}</button>
+              </ListItem>
+            ))}
+          </ul>
+        </Section>
       </div>
-      <NewPlaylist>
-        <hr size="1" />
-        <button type="button" title="Nova playlist">
-          <FiPlusCircle size={30} color="#fff" />
-          <span>Nova playlist</span>
-        </button>
+
+      <NewPlaylist type="button">
+        <FiPlusCircle size={30} color="#fff" />
+        Nova playlist
       </NewPlaylist>
     </Container>
   );

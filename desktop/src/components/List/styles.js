@@ -75,9 +75,5 @@ export const Play = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3px;
-  padding-left: 5px;
   visibility: hidden;
-  border: 1.5px solid #fff;
-  border-radius: 50%;
 `;

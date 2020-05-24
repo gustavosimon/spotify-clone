@@ -8,27 +8,19 @@ export const Container = styled.div`
   color: #fff;
   justify-content: space-between;
   flex-direction: column;
+  padding: 10px 0;
 `;
 
-export const Ul = styled.ul`
-  color: #fff;
-`;
-
-export const Span = styled.span`
-  text-transform: uppercase;
-  display: block;
-  font-size: 10px;
-  letter-spacing: 2px;
-  opacity: 0.6;
-  padding: 10px;
-`;
-
-export const Li = styled.li`
-  padding-left: 10px;
-  opacity: 0.5;
+export const ListItem = styled.li`
+  opacity: 0.7;
   color: #fff;
   margin-bottom: 10px;
   line-height: 20px;
+
+  &:hover {
+    opacity: 1;
+  }
+
   ${props =>
     props.selected &&
     css`
@@ -36,6 +28,7 @@ export const Li = styled.li`
       padding-left: 8px;
       opacity: 1;
     `}
+
   button {
     color: #fff;
     font-weight: bold;
@@ -43,7 +36,7 @@ export const Li = styled.li`
   }
 `;
 
-export const Home = styled.div`
+export const Section = styled.div`
   padding: 10px;
   margin-top: 14px;
   display: flex;
@@ -51,74 +44,54 @@ export const Home = styled.div`
   align-items: flex-start;
   flex-direction: column;
   margin-left: 5px;
+
+  > span {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const HomeButton = styled.div`
   display: flex;
-  opacity: 0.5;
-  span {
-    margin-top: 9px;
-    color: #fff;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    padding-left: 15px;
+  justify-content: center;
+  align-items: center;
+
+  & + div {
+    margin-top: 10px;
   }
-  :hover {
+
+  opacity: 0.7;
+
+  &:hover {
     opacity: 1;
+  }
+
+  span {
+    margin-left: 15px;
+    color: #fff;
   }
 `;
 
-export const RadioButton = styled.div`
+export const NewPlaylist = styled.button`
   display: flex;
-  opacity: 0.5;
-  span {
-    margin-top: 9px;
-    color: #fff;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    padding-left: 15px;
-  }
-  :hover {
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 10px 10px 0px 10px;
+  color: #fff;
+
+  opacity: 0.7;
+  border-top: 1px solid #fff;
+
+  &:hover {
     opacity: 1;
   }
-`;
 
-export const NavigateButton = styled.div`
-  display: flex;
-  opacity: 0.5;
-  span {
-    margin-top: 9px;
-    color: #fff;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    padding-left: 15px;
-  }
-  :hover {
-    opacity: 1;
-  }
-`;
-
-export const NewPlaylist = styled.div`
-  display: flex;
-  flex-direction: column;
-  hr {
-    opacity: 0.5;
-  }
-  button {
-    opacity: 0.5;
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    :hover {
-      opacity: 1;
-    }
-    span {
-      margin-left: 10px;
-      color: #fff;
-    }
+  svg {
+    margin-right: 10px;
   }
 `;
