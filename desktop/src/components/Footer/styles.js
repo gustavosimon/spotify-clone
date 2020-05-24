@@ -67,6 +67,10 @@ export const Volume = styled.div`
   svg {
     margin-left: 15px;
   }
+
+  input {
+    margin-left: 5px;
+  }
 `;
 
 export const Play = styled.div`
