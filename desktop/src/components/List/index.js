@@ -237,7 +237,6 @@ export default function List() {
 
   function handlePlayMusic(music) {
     setPlay(true);
-    console.log(music);
     setMusic(music);
   }
 
