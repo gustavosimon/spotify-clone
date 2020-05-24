@@ -1,37 +1,68 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    height: 90px;
-    background: #282828;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  height: 90px;
+  background: #282828;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  span {
+    color: #b3b3b3;
+    padding: 10px;
+    font-size: 11px;
+  }
+  svg {
+    margin-left: 15px;
+  }
 `;
 
 export const Music = styled.div`
-    span {
-        display: block;
-        margin-bottom: 5px;
+  span {
+    display: block;
+    margin-bottom: 5px;
+  }
+  padding: 20px;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span + span {
+    font-size: 10px;
+    color: #ccc;
+  }
+  img {
+    width: 40;
+    height: 40px;
+    margin-right: 8px;
+  }
+`;
+
+export const Volume = styled.div`
+  padding: 30px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  button {
+    opacity: 0.6;
+    :hover {
+      opacity: 1;
     }
-    padding: 20px;
-    color: #fff;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    span + span {
-        font-size: 10px;
-        color: #ccc;
-    }
-    img {
-        width: 50px;
-        height: 50px;
-        margin-right: 8px;
-    }
+  }
+  svg {
+    margin-left: 15px;
+  }
+`;
+
+export const Play = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
