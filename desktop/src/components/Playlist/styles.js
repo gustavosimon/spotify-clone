@@ -95,3 +95,53 @@ export const NewPlaylist = styled.button`
     margin-right: 10px;
   }
 `;
+
+export const ModalAddNewPlaylist = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+
+  div {
+    position: relative;
+    background: #282828;
+    padding: 20px;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    input {
+      background: #fff;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    input + button {
+      font-weight: bold;
+      line-height: 24px;
+      color: #fff;
+      background: rgba(30, 215, 96);
+      padding: 5px;
+      border-radius: 20px;
+    }
+  }
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  color: #fff;
+`;

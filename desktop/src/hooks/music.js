@@ -15,11 +15,29 @@ function MusicProvider({ children }) {
   const [music, setMusic] = useState({});
 
   const [tracks, setTracks] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
 
-  const loadTracks = useCallback(async () => {
-    const response = await api.get('/track');
+  const loadTracks = useCallback(async playlistId => {
+    if (playlistId) {
+      const { data } = await api.get(`/playlist-tracks/${playlistId}`);
 
-    setTracks(response.data);
+      const tracks = data.map(playlistTrack => ({
+        ...playlistTrack.track,
+        updatedAt: playlistTrack.updatedAt,
+      }));
+
+      setTracks(tracks);
+    } else {
+      const { data } = await api.get('/track');
+
+      setTracks(data);
+    }
+  }, []);
+
+  const loadPlaylists = useCallback(async () => {
+    const response = await api.get('/playlist');
+
+    setPlaylists(response.data);
   }, []);
 
   useEffect(() => {
@@ -28,7 +46,16 @@ function MusicProvider({ children }) {
 
   return (
     <MusicContext.Provider
-      value={{ play, setPlay, music, setMusic, tracks, loadTracks }}
+      value={{
+        play,
+        setPlay,
+        music,
+        setMusic,
+        tracks,
+        loadTracks,
+        playlists,
+        loadPlaylists,
+      }}
     >
       {children}
     </MusicContext.Provider>

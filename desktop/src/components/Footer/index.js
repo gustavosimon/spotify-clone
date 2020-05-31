@@ -71,29 +71,37 @@ export default function Footer() {
 
       <Wrapper>
         <Play>
-          <button type="button">
+          <button type="button" disabled={music}>
             <MdShuffle size={12} color="#fff" />
           </button>
 
-          <button type="button">
+          <button type="button" disabled={music}>
             <MdSkipPrevious size={22} color="#fff" />
           </button>
 
           {play ? (
-            <button type="button" onClick={() => setPlay(false)}>
+            <button
+              type="button"
+              onClick={() => setPlay(false)}
+              disabled={music}
+            >
               <MdPauseCircleOutline size={28} color="#fff" />
             </button>
           ) : (
-            <button type="button" onClick={() => handlePlayMusic(music)}>
+            <button
+              type="button"
+              onClick={() => handlePlayMusic(music)}
+              disabled={music}
+            >
               <MdPlayCircleOutline size={28} color="#fff" />
             </button>
           )}
 
-          <button type="button">
+          <button type="button" disabled={music}>
             <MdSkipNext size={22} color="#fff" />
           </button>
 
-          <button type="button">
+          <button type="button" disabled={music}>
             <MdRepeat size={12} color="#fff" />
           </button>
         </Play>
@@ -102,6 +110,7 @@ export default function Footer() {
           <span>{progressFormatted.initialTime}</span>
 
           <Slider
+            disabled={!!music}
             state={progress.played}
             width={650}
             max={1}
@@ -122,26 +131,27 @@ export default function Footer() {
       </Wrapper>
 
       <Volume>
-        <button type="button">
+        <button type="button" disabled={music}>
           <MdList size={20} color="#fff" />
         </button>
 
-        <button type="button">
+        <button type="button" disabled={music}>
           <MdDevices size={20} color="#fff" />
         </button>
 
-        <button type="button">
+        <button type="button" disabled={music}>
           <MdVolumeUp size={20} color="#fff" />
         </button>
 
         <Slider
+          disabled={music}
           state={volume}
           width={80}
           max={1}
           onChange={value => setVolume(value)}
         />
 
-        <button type="button">
+        <button type="button" disabled={music}>
           <MdFullscreen size={20} color="#fff" />
         </button>
       </Volume>

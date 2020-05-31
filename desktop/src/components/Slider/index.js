@@ -9,6 +9,7 @@ export default function Slider({
   max,
   step = 0.0001,
   width,
+  ...rest
 }) {
   const [value, setValue] = useState(Number(state));
 
@@ -29,6 +30,7 @@ export default function Slider({
       value={value}
       onChange={e => setValue(e.target.value)}
       onMouseUp={handleMouseUp}
+      {...rest}
     />
   );
 }

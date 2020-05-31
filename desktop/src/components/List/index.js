@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import pt from 'date-fns/locale/pt-BR';
 import { FiHeart } from 'react-icons/fi';
-import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/md';
+import {
+  MdPlayCircleOutline,
+  MdPauseCircleOutline,
+  MdPlaylistAdd,
+} from 'react-icons/md';
 
-import { Container, Tr, Td, Play } from './styles';
+import { Container, Tr, Td, Play, AddPlalist, FloatBox } from './styles';
 
 import { useMusic } from '../../hooks/music';
+import api from '../../services/api';
+import { parseISO } from 'date-fns/esm';
 
 const data = [
   {
@@ -234,11 +242,20 @@ const data = [
 ];
 
 export default function List() {
-  const { play, setPlay, music, setMusic, tracks } = useMusic();
+  const { play, setPlay, music, setMusic, tracks, playlists } = useMusic();
+
+  const [openFloatBox, setOpenFloatBox] = useState('');
 
   function handlePlayMusic(musicPlayed) {
     setPlay(true);
+
     setMusic(musicPlayed);
+  }
+
+  async function handleAddTrackToPlaylist(trackId, playlistId) {
+    await api.post(`/playlist-tracks/${playlistId}/${trackId}`);
+
+    setOpenFloatBox('');
   }
 
   return (
@@ -252,7 +269,8 @@ export default function List() {
             <Td style={{ width: '15%' }}>ARTIST</Td>
             <Td style={{ width: '15%' }}>ALBUM</Td>
             <Td style={{ width: '15%' }}>DATA</Td>
-            <Td style={{ width: '15%' }}>TEMPO</Td>
+            <Td style={{ width: '12%' }}>TEMPO</Td>
+            <Td style={{ width: '3%' }} />
           </tr>
         </thead>
 
@@ -278,9 +296,37 @@ export default function List() {
               </Td>
               <Td style={{ width: '34%' }}>{track.name}</Td>
               <Td style={{ width: '15%' }}>{track.artist}</Td>
-              <Td style={{ width: '15%' }}>d.album</Td>
-              <Td style={{ width: '15%' }}>{track.updatedAt}</Td>
-              <Td style={{ width: '15%' }}>d.time</Td>
+              <Td style={{ width: '15%' }}>{track.album}</Td>
+              <Td style={{ width: '15%' }}>
+                {track.updatedAt &&
+                  formatDistanceToNow(parseISO(track.updatedAt), {
+                    locale: pt,
+                  })}
+              </Td>
+              <Td style={{ width: '12%' }}>{track.time}</Td>
+              <Td style={{ width: '3%' }}>
+                <AddPlalist
+                  type="button"
+                  onClick={() =>
+                    setOpenFloatBox(openFloatBox === track._id ? '' : track._id)
+                  }
+                >
+                  <MdPlaylistAdd size={20} color="#fff" />
+                  {openFloatBox === track._id && (
+                    <FloatBox>
+                      {playlists.map(playlist => (
+                        <li
+                          onClick={() =>
+                            handleAddTrackToPlaylist(track._id, playlist._id)
+                          }
+                        >
+                          {playlist.name}
+                        </li>
+                      ))}
+                    </FloatBox>
+                  )}
+                </AddPlalist>
+              </Td>
             </Tr>
           ))}
         </tbody>

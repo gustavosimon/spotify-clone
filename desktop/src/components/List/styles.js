@@ -77,3 +77,29 @@ export const Play = styled.button`
   justify-content: center;
   visibility: hidden;
 `;
+
+export const AddPlalist = styled.button`
+  position: relative;
+`;
+
+export const FloatBox = styled.ul`
+  position: absolute;
+  top: 0;
+  right: 30px;
+  width: 150px;
+  background: #282828;
+  padding: 10px 0;
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.4);
+
+  li {
+    padding: 10px 20px;
+    color: #9e9e9e;
+    text-align: left;
+    font-weight: bold;
+
+    :hover {
+      background: #404040;
+      color: #fff;
+    }
+  }
+`;

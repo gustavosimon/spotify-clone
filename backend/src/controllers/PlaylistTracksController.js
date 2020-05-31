@@ -2,23 +2,31 @@ import PlaylistTracks from '../models/PlaylistTracks';
 
 export default {
   async index(req, res) {
-    const playlists = await PlaylistTracks.find({
+    const playlistTrack = await PlaylistTracks.find({
       playlist: req.params.id,
     })
       .populate('playlist')
       .populate('track');
 
-    return res.json(playlists);
+    return res.json(playlistTrack);
   },
 
   async store(req, res) {
-    const playlist = await PlaylistTracks.create({
+    const findPlaylistTrack = await PlaylistTracks.findOne({
       playlist: req.params.id,
       track: req.params.idTrack,
     });
 
-    await playlist.populate('playlist').populate('track').execPopulate();
+    if (findPlaylistTrack)
+      return res.json({ message: 'Track already exists in this playlist' });
 
-    return res.json(playlist);
+    const playlistTrack = await PlaylistTracks.create({
+      playlist: req.params.id,
+      track: req.params.idTrack,
+    });
+
+    await playlistTrack.populate('playlist').populate('track').execPopulate();
+
+    return res.json(playlistTrack);
   },
 };

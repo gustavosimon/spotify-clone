@@ -8,16 +8,10 @@ import {
   Section,
   HomeButton,
   NewPlaylist,
+  ModalAddNewPlaylist,
+  CloseButton,
 } from './styles';
-import api from '../../services/api';
 import { useMusic } from '../../hooks/music';
-
-const data = [
-  'Funk Hits',
-  'Eletronicas 2020',
-  'Bomba Patch',
-  'Rock 80-90 internacional',
-];
 
 const library = [
   'Feito para você',
@@ -30,26 +24,33 @@ const library = [
 
 export default function Playlist() {
   const [selected, setSelected] = useState('');
-  const [playlists, setPlaylists] = useState([]);
+  const [openModalNewPlaylist, setOpenModalNewPlaylist] = useState(false);
+  const [newPlaylist, setNewPlaylist] = useState('');
 
-  const { loadTracks } = useMusic();
+  const { loadTracks, loadPlaylists, playlists } = useMusic();
 
   useEffect(() => {
-    async function loadPlaylists() {
-      const response = await api.get('/playlist');
-
-      setPlaylists(response.data);
-    }
-
     loadPlaylists();
-  }, []);
+  }, [loadPlaylists]);
+
+  function handleClickPlaylist(id) {
+    setSelected(id);
+
+    loadTracks(id);
+  }
+
+  function handleClickHome() {
+    setSelected('');
+
+    loadTracks();
+  }
 
   return (
     <Container>
       <div>
         <Section>
           <HomeButton>
-            <button type="button" onClick={loadTracks}>
+            <button type="button" onClick={handleClickHome}>
               <MdHome size={24} color="#fff" />
             </button>
             <span>Início</span>
@@ -74,8 +75,8 @@ export default function Playlist() {
           <span>Sua biblioteca</span>
           <ul>
             {library.map((d, i) => (
-              <ListItem key={i} selected={selected === d}>
-                <button onClick={() => setSelected(d)}>{d}</button>
+              <ListItem key={i}>
+                <button>{d}</button>
               </ListItem>
             ))}
           </ul>
@@ -85,11 +86,11 @@ export default function Playlist() {
           <span>Playlists</span>
           <ul>
             {playlists.map(playlist => (
-              <ListItem
-                key={playlist._id}
-                selected={selected._id === playlist._id}
-              >
-                <button type="button" onClick={() => setSelected(playlist)}>
+              <ListItem key={playlist._id} selected={selected === playlist._id}>
+                <button
+                  type="button"
+                  onClick={() => handleClickPlaylist(playlist._id)}
+                >
                   {playlist.name}
                 </button>
               </ListItem>
@@ -98,10 +99,27 @@ export default function Playlist() {
         </Section>
       </div>
 
-      <NewPlaylist type="button">
+      <NewPlaylist type="button" onClick={() => setOpenModalNewPlaylist(true)}>
         <FiPlusCircle size={30} color="#fff" />
         Nova playlist
       </NewPlaylist>
+
+      {openModalNewPlaylist && (
+        <ModalAddNewPlaylist>
+          <div>
+            <CloseButton onClick={() => setOpenModalNewPlaylist(false)}>
+              X
+            </CloseButton>
+            <strong>Nova playlist</strong>
+            <input
+              value={newPlaylist}
+              onChange={e => setNewPlaylist(e.targer.value)}
+              placeholder="Nome da playlist"
+            />
+            <button>Criar</button>
+          </div>
+        </ModalAddNewPlaylist>
+      )}
     </Container>
   );
 }
