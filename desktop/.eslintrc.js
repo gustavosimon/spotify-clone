@@ -28,7 +28,5 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
     camelcase: 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
   },
 };

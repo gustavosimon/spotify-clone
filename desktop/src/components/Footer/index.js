@@ -29,9 +29,9 @@ export default function Footer() {
 
   const playerRef = useRef(null);
 
-  function handlePlayMusic(music) {
+  function handlePlayMusic(musicPlayed) {
     setPlay(true);
-    setMusic(music);
+    setMusic(musicPlayed);
   }
 
   function handleSeekChange(value) {

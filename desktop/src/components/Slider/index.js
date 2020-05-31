@@ -21,17 +21,14 @@ export default function Slider({
   }
 
   return (
-    <>
-      {console.log(value, state, min, max, step, width)}
-      <Container
-        width={width}
-        type="range"
-        min={min}
-        max={max / step}
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        onMouseUp={handleMouseUp}
-      />
-    </>
+    <Container
+      width={width}
+      type="range"
+      min={min}
+      max={max / step}
+      value={value}
+      onChange={e => setValue(e.target.value)}
+      onMouseUp={handleMouseUp}
+    />
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { MdHome, MdRadio, MdNavigation } from 'react-icons/md';
 import { FiPlusCircle } from 'react-icons/fi';
@@ -9,6 +9,8 @@ import {
   HomeButton,
   NewPlaylist,
 } from './styles';
+import api from '../../services/api';
+import { useMusic } from '../../hooks/music';
 
 const data = [
   'Funk Hits',
@@ -28,13 +30,26 @@ const library = [
 
 export default function Playlist() {
   const [selected, setSelected] = useState('');
+  const [playlists, setPlaylists] = useState([]);
+
+  const { loadTracks } = useMusic();
+
+  useEffect(() => {
+    async function loadPlaylists() {
+      const response = await api.get('/playlist');
+
+      setPlaylists(response.data);
+    }
+
+    loadPlaylists();
+  }, []);
 
   return (
     <Container>
       <div>
         <Section>
           <HomeButton>
-            <button type="button">
+            <button type="button" onClick={loadTracks}>
               <MdHome size={24} color="#fff" />
             </button>
             <span>Início</span>
@@ -69,9 +84,14 @@ export default function Playlist() {
         <Section>
           <span>Playlists</span>
           <ul>
-            {data.map((d, i) => (
-              <ListItem key={i} selected={selected === d}>
-                <button onClick={() => setSelected(d)}>{d}</button>
+            {playlists.map(playlist => (
+              <ListItem
+                key={playlist._id}
+                selected={selected._id === playlist._id}
+              >
+                <button type="button" onClick={() => setSelected(playlist)}>
+                  {playlist.name}
+                </button>
               </ListItem>
             ))}
           </ul>

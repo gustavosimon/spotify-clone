@@ -234,11 +234,11 @@ const data = [
 ];
 
 export default function List() {
-  const { play, setPlay, music, setMusic } = useMusic();
+  const { play, setPlay, music, setMusic, tracks } = useMusic();
 
-  function handlePlayMusic(music) {
+  function handlePlayMusic(musicPlayed) {
     setPlay(true);
-    setMusic(music);
+    setMusic(musicPlayed);
   }
 
   return (
@@ -257,30 +257,30 @@ export default function List() {
         </thead>
 
         <tbody>
-          {data.map((d, i) => (
-            <Tr key={i} active={music.title === d.title}>
+          {tracks.map(track => (
+            <Tr key={track._id} active={music.name === track.name}>
               <Td style={{ width: '3%' }}>
-                {play && music.title === d.title ? (
+                {play && music.name === track.name ? (
                   <Play onClick={() => setPlay(false)}>
                     <MdPauseCircleOutline size={30} color="#fff" />
                   </Play>
                 ) : (
-                  <Play onClick={() => handlePlayMusic(d)}>
+                  <Play onClick={() => handlePlayMusic(track)}>
                     <MdPlayCircleOutline size={30} color="#fff" />
                   </Play>
                 )}
               </Td>
 
               <Td style={{ width: '3%' }}>
-                <button>
+                <button type="button">
                   <FiHeart size={15} color="#fff" />
                 </button>
               </Td>
-              <Td style={{ width: '34%' }}>{d.title}</Td>
-              <Td style={{ width: '15%' }}>{d.artist}</Td>
-              <Td style={{ width: '15%' }}>{d.album}</Td>
-              <Td style={{ width: '15%' }}>{d.date}</Td>
-              <Td style={{ width: '15%' }}>{d.time}</Td>
+              <Td style={{ width: '34%' }}>{track.name}</Td>
+              <Td style={{ width: '15%' }}>{track.artist}</Td>
+              <Td style={{ width: '15%' }}>d.album</Td>
+              <Td style={{ width: '15%' }}>{track.updatedAt}</Td>
+              <Td style={{ width: '15%' }}>d.time</Td>
             </Tr>
           ))}
         </tbody>
