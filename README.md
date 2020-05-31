@@ -29,7 +29,7 @@
 <details>
   <summary>See</summary>
 
-![Frontend](.github/assets/whatsapp.gif)
+![Frontend](.github/assets/SpotifyGif.gif)
 
 </details>
 
