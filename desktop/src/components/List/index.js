@@ -8,11 +8,11 @@ import {
   MdPlaylistAdd,
 } from 'react-icons/md';
 
+import { parseISO } from 'date-fns/esm';
 import { Container, Tr, Td, Play, AddPlalist, FloatBox } from './styles';
 
 import { useMusic } from '../../hooks/music';
 import api from '../../services/api';
-import { parseISO } from 'date-fns/esm';
 
 const data = [
   {

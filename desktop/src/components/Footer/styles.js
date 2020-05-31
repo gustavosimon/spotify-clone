@@ -36,6 +36,9 @@ export const Music = styled.div`
   span {
     display: block;
     margin-bottom: 5px;
+    button {
+      margin-left: 10px;
+    }
   }
 
   span + span {
@@ -44,8 +47,8 @@ export const Music = styled.div`
   }
 
   img {
-    width: 40;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     margin-right: 8px;
   }
 `;

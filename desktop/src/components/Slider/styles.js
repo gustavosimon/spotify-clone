@@ -19,4 +19,12 @@ export const Container = styled.input`
     background: #fff;
     cursor: pointer;
   }
+
+  @media (max-width: 1200px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 800px) {
+    max-width: 200px;
+  }
 `;

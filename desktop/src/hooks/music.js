@@ -55,6 +55,7 @@ function MusicProvider({ children }) {
         loadTracks,
         playlists,
         loadPlaylists,
+        setPlaylists,
       }}
     >
       {children}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { MdHome, MdRadio, MdNavigation } from 'react-icons/md';
 import { FiPlusCircle } from 'react-icons/fi';
+import api from '../../services/api';
 import {
   Container,
   ListItem,
@@ -27,7 +28,7 @@ export default function Playlist() {
   const [openModalNewPlaylist, setOpenModalNewPlaylist] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState('');
 
-  const { loadTracks, loadPlaylists, playlists } = useMusic();
+  const { loadTracks, loadPlaylists, playlists, setPlaylists } = useMusic();
 
   useEffect(() => {
     loadPlaylists();
@@ -43,6 +44,15 @@ export default function Playlist() {
     setSelected('');
 
     loadTracks();
+  }
+
+  async function handleNewPlaylist() {
+    if (newPlaylist === '') return;
+
+    const response = await api.post('/playlist', { name: newPlaylist });
+    setPlaylists([...playlists, response.data]);
+    setOpenModalNewPlaylist(false);
+    setNewPlaylist('');
   }
 
   return (
@@ -74,9 +84,9 @@ export default function Playlist() {
         <Section>
           <span>Sua biblioteca</span>
           <ul>
-            {library.map((d, i) => (
-              <ListItem key={i}>
-                <button>{d}</button>
+            {library.map(d => (
+              <ListItem key={d}>
+                <button type="button">{d}</button>
               </ListItem>
             ))}
           </ul>
@@ -113,10 +123,12 @@ export default function Playlist() {
             <strong>Nova playlist</strong>
             <input
               value={newPlaylist}
-              onChange={e => setNewPlaylist(e.targer.value)}
+              onChange={e => setNewPlaylist(e.target.value)}
               placeholder="Nome da playlist"
             />
-            <button>Criar</button>
+            <button type="button" onClick={handleNewPlaylist}>
+              Criar
+            </button>
           </div>
         </ModalAddNewPlaylist>
       )}

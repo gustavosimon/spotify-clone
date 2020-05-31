@@ -59,23 +59,30 @@ export default function Footer() {
   return (
     <Container>
       <Music>
-        <img src={disc} alt="Imagem de disco" />
+        <img
+          src={
+            music._id ? `http://localhost:3333/public/${music._id}.jpg` : disc
+          }
+          alt={music.name}
+        />
         <div>
-          <span>{music.title}</span>
+          <span>
+            {music.name}
+            <button type="button">
+              <FiHeart size={12} color="#fff" />
+            </button>
+          </span>
           <span>{music.artist}</span>
-          <button type="button">
-            <FiHeart size={12} color="#fff" />
-          </button>
         </div>
       </Music>
 
       <Wrapper>
         <Play>
-          <button type="button" disabled={music}>
+          <button type="button" disabled={!music._id}>
             <MdShuffle size={12} color="#fff" />
           </button>
 
-          <button type="button" disabled={music}>
+          <button type="button" disabled={!music._id}>
             <MdSkipPrevious size={22} color="#fff" />
           </button>
 
@@ -83,7 +90,7 @@ export default function Footer() {
             <button
               type="button"
               onClick={() => setPlay(false)}
-              disabled={music}
+              disabled={!music._id}
             >
               <MdPauseCircleOutline size={28} color="#fff" />
             </button>
@@ -91,17 +98,17 @@ export default function Footer() {
             <button
               type="button"
               onClick={() => handlePlayMusic(music)}
-              disabled={music}
+              disabled={!music._id}
             >
               <MdPlayCircleOutline size={28} color="#fff" />
             </button>
           )}
 
-          <button type="button" disabled={music}>
+          <button type="button" disabled={!music._id}>
             <MdSkipNext size={22} color="#fff" />
           </button>
 
-          <button type="button" disabled={music}>
+          <button type="button" disabled={!music._id}>
             <MdRepeat size={12} color="#fff" />
           </button>
         </Play>
@@ -110,7 +117,7 @@ export default function Footer() {
           <span>{progressFormatted.initialTime}</span>
 
           <Slider
-            disabled={!!music}
+            disabled={!music._id}
             state={progress.played}
             width={650}
             max={1}
@@ -121,7 +128,7 @@ export default function Footer() {
         </div>
 
         <ReactPlayer
-          url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+          url={`http://localhost:3333/public/${music._id}.mp3`}
           playing={play}
           onProgress={handleProgress}
           style={{ display: 'none' }}
@@ -131,27 +138,27 @@ export default function Footer() {
       </Wrapper>
 
       <Volume>
-        <button type="button" disabled={music}>
+        <button type="button" disabled={!music._id}>
           <MdList size={20} color="#fff" />
         </button>
 
-        <button type="button" disabled={music}>
+        <button type="button" disabled={!music._id}>
           <MdDevices size={20} color="#fff" />
         </button>
 
-        <button type="button" disabled={music}>
+        <button type="button" disabled={!music._id}>
           <MdVolumeUp size={20} color="#fff" />
         </button>
 
         <Slider
-          disabled={music}
+          disabled={!music._id}
           state={volume}
           width={80}
           max={1}
           onChange={value => setVolume(value)}
         />
 
-        <button type="button" disabled={music}>
+        <button type="button" disabled={!music._id}>
           <MdFullscreen size={20} color="#fff" />
         </button>
       </Volume>
